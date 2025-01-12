@@ -78,3 +78,70 @@ xiaoyaliu/alist
 修改/.github/workflows/docker.yaml文件
 添加 schedule即可定时执行(此处cron使用UTC时区)
 ![](doc/定时执行.png)
+
+
+# 2. 其他Pull镜像的方法
+
+### 方案一  转存到阿里云(本方法)
+使用Github Action将国外的Docker镜像转存到阿里云私有仓库，供国内服务器使用，免费易用
+
+- 支持DockerHub, gcr.io, k8s.io, ghcr.io等任意仓库
+- 支持最大40GB的大型镜像
+- 使用阿里云的官方线路，速度快
+
+项目地址: 
+https://github.com/tech-shrimp/docker_image_pusher
+
+### 方案二 镜像站
+现在只有很少的国内镜像站存活<br>
+不保证镜像齐全,且用且珍惜<br>
+以下三个镜像站背靠较大的开源项目，优先推荐<br>
+
+|项目名称|项目地址| 加速地址|
+| ----------- | ----------- |----------- |
+|1Panel|[https://github.com/1Panel-dev/1Panel/](https://github.com/1Panel-dev/1Panel/)|https://docker.1panel.live|
+|Daocloud|[https://github.com/DaoCloud/public-image-mirror](https://github.com/DaoCloud/public-image-mirror)|https://docker.m.daocloud.io|
+|耗子面板|[https://github.com/TheTNB/panel](https://github.com/TheTNB/panel 	)|https://hub.rat.dev|
+
+
+#### Linux配置镜像站
+
+
+
+
+```
+sudo vi /etc/docker/daemon.json
+```
+输入下列内容，最后按ESC，输入 :wq! 保存退出。
+```
+{
+    "registry-mirrors": [
+        "https://docker.m.daocloud.io",
+        "https://docker.1panel.live",
+        "https://hub.rat.dev"
+    ]
+}
+```
+重启docker
+```
+sudo service docker restart
+```
+
+#### Windows/Mac配置镜像站
+Setting->Docker Engine->添加上换源的那一段，如下图
+![](images/win加速.png)
+
+### 方案三 离线镜像
+使用Github Action下载docker离线镜像
+https://github.com/wukongdaily/DockerTarBuilder
+
+### 方案四 使用一键脚本
+bash -c "$(curl -sSLf https://xy.ggbond.org/xy/docker_pull.sh)" -s 完整镜像名
+
+### 方案五 使用Cloudflare worker 自建镜像加速
+https://github.com/cmliu/CF-Workers-docker.io
+
+# 3. 去哪里找镜像
+
+https://docker.fxxk.dedyn.io/
+
