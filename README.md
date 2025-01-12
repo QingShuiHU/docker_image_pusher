@@ -129,7 +129,7 @@ sudo service docker restart
 
 #### Windows/Mac配置镜像站
 Setting->Docker Engine->添加上换源的那一段，如下图
-![](images/win加速.png)
+![](/doc/win加速.png)
 
 ### 方案三 离线镜像
 使用Github Action下载docker离线镜像
