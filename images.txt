@@ -1,7 +1,7 @@
 nginx
 redis
 mysql
-nacos
+nacos/nacos-server
 rabbitmq
 
 #支持私库
